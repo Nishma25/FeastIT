@@ -1,0 +1,28 @@
+/* Specific styling for the edit logo */
+.editlogo {
+  background-image: url('../images/editlogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Specific styling for the trash icon */
+.trashicon {
+  background-image: url('../images/deleteLogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.button {
+  width: 4em;
+  padding: 0.5rem;
+  background-color: white;
+  color:#353935;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0.5rem;
+  border: none;
+}
+
+button:hover {
+  background-color: lightgrey;
+}

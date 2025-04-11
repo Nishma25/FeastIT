@@ -1,0 +1,45 @@
+/* Dashboard.css */
+
+/*  Content Styles */
+
+.data-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 5em;
+  /* Space between the two data sections */
+}
+
+.data-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  width: 45%;
+  /* Adjust as needed */
+}
+
+.data-card {
+  background-color: white;
+  border-radius: 0.5em;
+  padding: 1em;
+  box-shadow: 0 0.05em 0.5em rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.data-card:hover {
+  background-color: lightsalmon;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+
+.data-label {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 0.5em;
+}
+
+.data-value {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}

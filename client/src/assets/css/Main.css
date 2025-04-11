@@ -1,0 +1,100 @@
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* === Header (Fixed on Top) === */
+.top-header {
+    width: 100%;
+    background: #E87500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* === Content Layout (Sidebar + Main Content) === */
+.content-layout {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 60px;
+    /* Adjust height for header */
+}
+
+
+/* === Content === */
+
+.content {
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out, width 1.3s ease-in-out;
+    flex-grow: 1;
+}
+
+/* When Sidebar is Open (Compact View) */
+.content.compact {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+/* When Sidebar is Closed (Expanded View) */
+.expanded {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* === Header Styling === */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* === Search Bar === */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.search-icon {
+    color: #555;
+}
+
+/* === Table Styling === */
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}

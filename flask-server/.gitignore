@@ -1,0 +1,49 @@
+# Python Bytecode Cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python Environment Files
+*.env
+.env
+
+# IDE / Editor Settings
+.vscode/
+.idea/
+*.swp
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database Files (if SQLite used)
+*.sqlite3
+*.db
+
+# Python Egg
+*.egg-info/
+dist/
+build/
+
+# Cache
+.cache/
+.pytest_cache/
+
+
+# Static File Build Outputs (optional)
+static/dist/
+static/build/
+
+# Secrets / API Keys / Tokens (if saved locally)
+secrets.json
+config.json
+

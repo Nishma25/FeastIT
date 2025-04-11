@@ -1,0 +1,158 @@
+/* === Status Badges === */
+.status {
+  padding: 5px 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* === Status Header & Filter Icon === */
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.filter-icon {
+  cursor: pointer;
+  color: #666;
+  transition: 0.3s;
+}
+
+.filter-icon:hover {
+  color: #000;
+}
+
+/* === Status Filter Dropdown === */
+.status-filter {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.status-filter button {
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.status-filter button:hover {
+  background: #f1f1f1;
+}
+
+.button-green {
+  width:5em;
+  padding: 0.5rem;
+  background-color: #32CD32;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem;
+  border:none;
+}
+.button-green:hover {
+  background-color: #228B22
+}
+.button-red {
+  width:5em;
+  padding: 0.5rem;
+  background-color: #FF0000;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem;
+  border:none;
+}
+.button-red:hover {
+  background-color: #D2042D;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: calc(100% - 175px);
+}
+
+
+.search-status-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-select {
+  display: flex;
+  flex-direction: column;
+  min-width: 175px;
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-dropdown {
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* Position the icon inside the select */
+.dropdown-icon {
+  size:50px;
+  position: absolute;
+  right: 15px;
+  top:15px;
+  color: #555;
+  pointer-events: none; /* Prevents clicking the icon */
+}
+
+
+
+
+
+
+
+
+
+
