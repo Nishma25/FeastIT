@@ -1,0 +1,22 @@
+/* === Status Badges === */
+.status {
+    padding: 5px 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .preparing {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  

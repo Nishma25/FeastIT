@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import setupAxiosInterceptors from './utils/setupAxios';
+
+
+// 🔐 Setup token interceptor globally
+setupAxiosInterceptors();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

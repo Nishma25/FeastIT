@@ -98,3 +98,17 @@
     background-color: #f8f9fa;
     font-weight: bold;
 }
+
+.button-back {
+    width: 52.5%;
+    padding: 0.5rem;
+    background-color: #124734;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .button-back:hover {
+    background-color: #187653;
+  }

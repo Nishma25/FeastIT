@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Sidebar.css";
+import MessagePopup from "../components/MessagePopup"; // ✅ Import Popup
 
 function Sidebar() {
   const navigate = useNavigate();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-
-  // Handle Logout Confirmation
+  const [popup, setPopup] = useState({ visible: false, type: "info", message: "" }); // ✅ Popup state
   const handleLogout = () => {
-    localStorage.removeItem("userToken"); // Clear any stored session (if applicable)
-    navigate("/adminLogin"); // Redirect to vendor login page
+    // Clear token
+    localStorage.removeItem("jwtToken");
+  
+    // Close the confirm modal
+    setShowLogoutConfirm(false);
+  
+    // Show popup
+    setPopup({ visible: true, type: "success", message: "Logged out successfully!" });
+  
+    // After a short delay, redirect
+    setTimeout(() => {
+      navigate("/adminLogin");
+    }, 1500);
   };
+  
 
   return (
     <div className="sidebar">
@@ -18,11 +30,12 @@ function Sidebar() {
         <button className="sidebar-btn" onClick={() => navigate("/dashboard")}>Home Page</button>
         <button className="sidebar-btn" onClick={() => navigate("/vendors")}>Vendor Profile</button>
         <button className="sidebar-btn" onClick={() => navigate("/customers")}>Customer Profile</button>
-        {/* <button className="sidebar-btn" onClick={() => navigate("/appearance")}>Appearance</button> */}
-        <button className="sidebar-btn logout-btn"  onClick={() => setShowLogoutConfirm(true)}>Logout</button>
+        <button className="sidebar-btn" onClick={() => navigate("/orders")}>Orders</button>
+
+        <button className="sidebar-btn logout-btn" onClick={() => setShowLogoutConfirm(true)}>Logout</button>
       </div>
 
-      {/* Logout Confirmation Modal */}
+      {/* ✅ Logout Confirmation Modal */}
       {showLogoutConfirm && (
         <div className="logout-overlay">
           <div className="logout-modal">
@@ -35,6 +48,14 @@ function Sidebar() {
           </div>
         </div>
       )}
+
+      {/* ✅ Popup Component */}
+      <MessagePopup
+        visible={popup.visible}
+        type={popup.type}
+        message={popup.message}
+        onClose={() => setPopup({ ...popup, visible: false })}
+      />
     </div>
   );
 }

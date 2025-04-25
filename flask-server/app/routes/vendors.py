@@ -16,7 +16,7 @@ def get_vendors():
         return jsonify({"error": "Invalid status"}), 400
 
     # Query the vendors from the database based on the status
-    vendors = Vendor.query.filter_by(status=status).all()
+    vendors = Vendor.query.filter_by(vendor_status=status).all()
     data = [vendor.to_dict() for vendor in vendors]  # Convert each vendor to dictionary for JSON serialization
 
     return jsonify(data), 200
@@ -34,8 +34,18 @@ def update_vendor_status():
     # Find vendor by ID and update the status
     vendor = Vendor.query.get(vendor_id)
     if vendor:
-        vendor.status = new_status
+        vendor.vendor_status = new_status
         db.session.commit()
         return jsonify({"message": "Vendor status updated", "vendor": vendor.to_dict()}), 200
     else:
         return jsonify({"message": "Vendor not found"}), 404
+    
+
+# Endpoint to fetch a vendor by vendor_id
+@vendor_bp.route('/vendors/<int:vendor_id>', methods=['GET'])
+def get_vendor_by_id(vendor_id):
+    vendor = Vendor.query.get(vendor_id)
+    if vendor:
+        return jsonify(vendor.to_dict()), 200
+    else:
+        return jsonify({"error": "Vendor not found"}), 404

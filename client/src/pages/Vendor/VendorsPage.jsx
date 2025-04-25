@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaFilter, FaAngleDown, FaAngleUp } from "react-icons/fa";
-import "../assets/css/VendorsPage.css";
-import '../assets/css/Main.css';
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import "../../assets/css/VendorsPage.css";
+import '../../assets/css/Main.css';
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
 import axios from "axios";
+import { useNavigate,useSearchParams } from 'react-router-dom';
 import { XCircle, CheckCircle } from "lucide-react";
 
 function VendorsPage() {
@@ -12,13 +13,17 @@ function VendorsPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [vendors, setVendors] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("pending");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedStatus = searchParams.get("status") || "pending";
+
+  const navigate = useNavigate();
+
 
 
   useEffect(() => {
     const fetchvendors = async () => {
       try {
-        const response = await axios.get('/vendors',{params:{'status':selectedStatus}}); // Adjust the base URL if needed
+        const response = await axios.get('/vendors', { params: { 'status': selectedStatus } }); // Adjust the base URL if needed
         setVendors(response.data); // Save the response data to state
       } catch (error) {
         console.error('Error fetching pending vendors:', error);
@@ -32,10 +37,11 @@ function VendorsPage() {
   const filteredVendors = vendors.filter(vendor => {
     const vendorId = vendor.vendor_id.toString(); // Convert vendor_id to string to ensure compatibility
     return (
-      (vendor.vendor_name.toLowerCase().includes(searchTerm.toLowerCase()) || vendorId.includes(searchTerm)) &&
-      (selectedStatus === "" || vendor.status === selectedStatus)
+      (vendor.business_name.toLowerCase().includes(searchTerm.toLowerCase()) || vendorId.includes(searchTerm)) &&
+      (selectedStatus === "" || vendor.vendor_status === selectedStatus)
     );
   });
+  console.log(filteredVendors, "filteredVendors")
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -56,8 +62,8 @@ function VendorsPage() {
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting order state
   const sortByDate = () => {
     const sortedVendors = [...vendors].sort((a, b) => {
-      const dateA = new Date(a.applied_date);
-      const dateB = new Date(b.applied_date);
+      const dateA = new Date(a.registration_date);
+      const dateB = new Date(b.registration_date);
 
       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
     });
@@ -107,21 +113,22 @@ function VendorsPage() {
 
           {/* Search Bar */}
           <div className="search-status-container">
-          <div className="custom-select">
+            <div className="custom-select">
               {/* <label className="block text-gray-700 font-semibold mb-2">Status:</label> */}
 
               <div className="select-wrapper">
                 <select
                   className="custom-dropdown"
                   value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
-                  onFocus={() => setIsOpen(true)}  // Opens dropdown
-                  onBlur={() => setIsOpen(false)}  // Closes dropdown
+                  onChange={(e) => setSearchParams({ status: e.target.value })}
+                  onFocus={() => setIsOpen(true)}
+                  onBlur={() => setIsOpen(false)}
                 >
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
                   <option value="rejected">Rejected</option>
                 </select>
+
 
                 {/* Icon for dropdown */}
                 {isOpen ? (
@@ -135,7 +142,7 @@ function VendorsPage() {
               <FaSearch className="search-icon" />
               <input
                 type="text"
-                placeholder="Search vendors using vendor_id or Name"
+                placeholder="Search vendors using Vendor ID or Name"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
@@ -149,9 +156,10 @@ function VendorsPage() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>Application ID</th>
-                  <th>Vendor Name</th>
+                  <th>Venodor ID</th>
+                  <th>Business Name</th>
                   <th>Vendor EmailID</th>
+                  <th>Vendor Address</th>
                   <th onClick={sortByDate} style={{ cursor: "pointer", }}>
                     Applied Date {sortOrder === "asc" ? <><FaFilter className="filter-icon" /> <span>↑</span> </> : <><FaFilter className="filter-icon" /> <span>↓</span> </>}
                   </th>
@@ -170,31 +178,26 @@ function VendorsPage() {
                       )} */}
                     </div>
                   </th>
-                  <th>Approve / Reject</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredVendors.map((vendor, index) => (
                   <tr key={index}>
-                    <td>{vendor.vendor_id}</td>
-                    <td>{vendor.vendor_name}</td>
-                    <td>{vendor.email}</td>
-                    <td>{vendor.applied_date}</td>
+                    <td>
+                      <button
+                        onClick={() => navigate(`/vendorDetail/${vendor.vendor_id}`, { state: { vendor } })}
+                        className="text-blue-600 underline hover:text-blue-800"
+                      >
+                        {vendor.vendor_id}
+                      </button>
+                    </td>
+                    <td>{vendor.business_name}</td>
+                    <td>{vendor.vendor_email}</td>
+                    <td>{vendor.vendor_address}</td>
+                    <td>{vendor.registration_date}</td>
                     {/* <td>${order.unitPrice.toFixed(2)}</td>
                     <td>${(order.qty * order.unitPrice).toFixed(2)}</td> */}
-                    <td className={getStatusClass(vendor.status)}>{vendor.status}</td>
-                    <td>
-                      {vendor.status === "pending" && (
-                        <div className="flex flex-row space-x-0.5">
-                          <button className="button-green flex items-center justify-center focus:outline-none" onClick={() => updateStatus(vendor.vendor_id, "approved")}>
-                            <CheckCircle />
-                          </button>
-                          <button className="button-red flex items-center justify-center focus:outline-none" onClick={() => updateStatus(vendor.vendor_id, "rejected")}>
-                            <XCircle />
-                          </button>
-                        </div>
-                      )}
-                    </td>
+                    <td className={getStatusClass(vendor.vendor_status)}>{vendor.vendor_status}</td>
                   </tr>
                 ))}
               </tbody>

@@ -1,0 +1,104 @@
+/* OrderDetailsPage.css */
+
+.order-card {
+  background: #ffffff;
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.status-text {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge.approved, .badge.confirmed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge.rejected, .badge.cancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.badge.delivered {
+  background-color: #dbf4ff;
+  color: #2563eb;
+}
+
+.badge.preparing {
+  background-color: #ede9fe;
+  color: #6b21a8;
+}
+
+.order-section h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.order-section p {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: #4b5563;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table th, .items-table td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #124734;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #0f3c2b;
+}
