@@ -86,7 +86,7 @@ def signup():
     return jsonify({"message": "Admin account created successfully."}), 201
 
 
-@admin_bp.route("/admin/dashboard", methods=["GET"])
+@admin_bp.route("/admin/analytics", methods=["GET"])
 @token_required
 def admin_dashboard(current_user):
     return jsonify({"message": f"Welcome to the admin dashboard, {current_user.admin_name}."}), 200

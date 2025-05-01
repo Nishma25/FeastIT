@@ -11,6 +11,8 @@ import OrdersPage from "./pages/Order/OrdersPage";
 import VendorDetailPage from "./pages/Vendor/VendorDetailPage";
 import CustomerDetailsPage from "./pages/Customer/CustomerDetailsPage";
 import PrivateRoute from "./components/PrivateRoute"; // ✅ Use this version
+import AnalyticsPage from "./pages/AnalyticsPage";
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path="/orderDetails/:orderId" element={<PrivateRoute><OrderDetailsPage /></PrivateRoute>} />
         <Route path="/vendorDetail/:vendorId" element={<PrivateRoute><VendorDetailPage /></PrivateRoute>} />
         <Route path="/customerDetails/:customerID" element={<PrivateRoute><CustomerDetailsPage /></PrivateRoute>} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
       </Routes>
     </BrowserRouter>
   );

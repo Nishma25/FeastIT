@@ -227,3 +227,20 @@ class AnalyticsSummary(db.Model):
 
     def __repr__(self):
         return f"<AnalyticsSummary {self.date}>"
+    
+
+class Analytics(db.Model):
+    __tablename__ = 'analytics'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date_recorded = db.Column(db.Date, nullable=False)
+    total_orders = db.Column(db.Integer, default=0)
+    total_revenue = db.Column(db.Numeric(10, 2), default=0.00)
+    total_customers = db.Column(db.Integer, default=0)
+    total_vendors = db.Column(db.Integer, default=0)
+    top_vendor_name = db.Column(db.String(255))
+    top_vendor_orders = db.Column(db.Integer, default=0)
+    most_popular_item_name = db.Column(db.String(255))
+    most_popular_item_quantity = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+

@@ -25,7 +25,7 @@ function AdminSignupPage() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/adminSignup', {
+      const response = await axios.post('http://localhost:8000/adminSignup', {
         name,
         email,
         password
@@ -75,6 +75,7 @@ function AdminSignupPage() {
                 type="text"
                 id="name"
                 value={name}
+                placeholder="FirstName and LastName"
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -86,6 +87,7 @@ function AdminSignupPage() {
                 type="email"
                 id="email"
                 value={email}
+                placeholder="email@feast.com"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />

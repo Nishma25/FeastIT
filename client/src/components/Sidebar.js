@@ -14,23 +14,26 @@ function Sidebar() {
     // Close the confirm modal
     setShowLogoutConfirm(false);
   
-    // Show popup
-    setPopup({ visible: true, type: "success", message: "Logged out successfully!" });
+    // // Show popup
+    // setPopup({ visible: true, type: "success", message: "Logged out successfully!" });
   
     // After a short delay, redirect
-    setTimeout(() => {
-      navigate("/adminLogin");
-    }, 1500);
+    navigate("/adminLogin");
+    // setTimeout(() => {
+  
+    // }, 1500);
   };
   
 
   return (
     <div className="sidebar">
       <div className="sidebar-menu">
-        <button className="sidebar-btn" onClick={() => navigate("/dashboard")}>Home Page</button>
+        {/* <button className="sidebar-btn" onClick={() => navigate("/dashboard")}>Home Page</button> */}
+        <button className="sidebar-btn" onClick={() => navigate("/analytics")}>Dashboard</button>
         <button className="sidebar-btn" onClick={() => navigate("/vendors")}>Vendor Profile</button>
         <button className="sidebar-btn" onClick={() => navigate("/customers")}>Customer Profile</button>
         <button className="sidebar-btn" onClick={() => navigate("/orders")}>Orders</button>
+        {/* <button className="sidebar-btn" onClick={() => navigate("/analytics")}>Analytics</button> */}
 
         <button className="sidebar-btn logout-btn" onClick={() => setShowLogoutConfirm(true)}>Logout</button>
       </div>
