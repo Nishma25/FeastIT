@@ -41,6 +41,7 @@ class AdminUser(db.Model):
 
 class Vendor(db.Model):
     __tablename__ = 'vendors'
+
     vendor_id = db.Column(db.Integer, primary_key=True)
     business_name = db.Column(db.String(255), nullable=False)
     vendor_name = db.Column(db.String(255), nullable=False)
@@ -53,10 +54,14 @@ class Vendor(db.Model):
     vendor_status = db.Column(db.String(20), default='pending')
     vendor_rejectedmessage = db.Column(db.Text)
     business_hours = db.Column(db.String(100))
-    registration_cert = db.Column(db.String(255))
-    supporting_docs = db.Column(db.String(255))
-    registration_date = db.Column(db.Date, default=datetime.utcnow)
+    
+    registration_cert = db.Column(db.String(255))  # filename or display name
+    supporting_docs = db.Column(db.String(255))    # filename or display name
+    registration_cert_file = db.Column(db.LargeBinary)  # actual PDF BLOB
+    supporting_docs_file = db.Column(db.LargeBinary)     # actual PDF BLOB
 
+    registration_date = db.Column(db.DateTime, default=datetime.utcnow)
+    
     def __repr__(self):
         return f"<Vendor {self.vendor_email}>"
     

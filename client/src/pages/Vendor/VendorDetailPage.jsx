@@ -126,6 +126,32 @@ const VendorDetailPage = () => {
                 <Mail size={16} /> {vendor.vendor_email}
               </p>
             </div>
+            <div className="vendor-section">
+              <h4>Documentation</h4>
+              <p><strong>Registration Certificate:</strong> {vendor.registration_cert || 'N/A'}</p>
+              {vendor.registration_cert && (
+                <a
+                  href={`http://localhost:8000//vendors/${vendor.vendor_id}/registration_cert_file`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="download-btn"
+                >
+                  📄 View Registration Certificate
+                </a>
+              )}
+
+              <p><strong>Supporting Docs:</strong> {vendor.supporting_docs || 'N/A'}</p>
+              {vendor.supporting_docs && (
+                <a
+                  href={`http://localhost:8000//vendors/${vendor.vendor_id}/supporting_docs_file`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="download-btn"
+                >
+                  📄 View Supporting Docs
+                </a>
+              )}
+            </div>
 
             <div className="vendor-section">
               {vendor.vendor_rejectedmessage && (

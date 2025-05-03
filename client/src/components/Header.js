@@ -21,7 +21,7 @@ function Header({ toggleSidebar }) {
         /> 
         {/* Logo and Brand Name */}
         <img src={logo} alt="Feast-IT Logo" className="logo" />
-        <span className="brand">Feast-IT</span>
+        <span className="brand">FeastIT - Admin</span>
       </div>
     </div>
   );

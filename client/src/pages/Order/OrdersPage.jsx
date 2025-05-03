@@ -5,16 +5,15 @@ import "../../assets/css/OrdersPage.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("");
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const selectedStatus = searchParams.get("status") || "";
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -35,7 +34,7 @@ function OrdersPage() {
   const filteredOrders = orders.filter(order => {
     const customerID = order.customer_id.toString();
     const matchesSearch = customerID.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = !selectedStatus || order.order_status === selectedStatus;
+    const matchesStatus = !statusFilter || order.order_status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
@@ -63,12 +62,13 @@ function OrdersPage() {
           <h2>Active Orders</h2>
 
           <div className="search-status-container">
+            {/* Dropdown Filter */}
             <div className="custom-select">
               <div className="select-wrapper">
                 <select
                   className="custom-dropdown"
-                  value={selectedStatus}
-                  onChange={(e) => setSearchParams({ status: e.target.value })}
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
                   onFocus={() => setIsOpen(true)}
                   onBlur={() => setIsOpen(false)}
                 >
@@ -87,6 +87,7 @@ function OrdersPage() {
               </div>
             </div>
 
+            {/* Search */}
             <div className="flex search-container">
               <FaSearch className="search-icon" />
               <input
@@ -99,6 +100,7 @@ function OrdersPage() {
             </div>
           </div>
 
+          {/* Orders Table */}
           <div className="table-container">
             <table className="table">
               <thead>
@@ -111,7 +113,7 @@ function OrdersPage() {
               </thead>
               <tbody>
                 {filteredOrders.map((order) => (
-                  <tr key={order.customer_id}>
+                  <tr key={order.order_id}>
                     <td>
                       <button
                         onClick={() => navigate(`/orderDetails/${order.order_id}`, {

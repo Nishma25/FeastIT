@@ -51,7 +51,7 @@ function AdminSignupPage() {
       <div className="orange-line">
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <img src={logo} alt="Logo" style={{ margin: '10px 20px' }} />
-          <span className='brand'>Feast-IT</span>
+          <span className='brand'>FeastIT - Admin</span>
         </span>
       </div>
 
